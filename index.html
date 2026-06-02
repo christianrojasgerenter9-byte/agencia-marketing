@@ -315,15 +315,19 @@ Solicitar Asesoría
 
 <h2 class="titulo" style="color:white;">Contáctame</h2>
 
-<form>
+<form action="https://api.web3forms.com/submit" method="POST">
 
-<input type="text" placeholder="Nombre">
+<input type="hidden" name="redirect" value="https://christianrojasgerenter9-byte.github.io/agencia-marketing/gracias.html">
 
-<input type="email" placeholder="Correo">
+<input type="hidden" name="access_key" value="be3b886b-36d6-4df4-95e1-bf72faab46f4">
 
-<input type="tel" placeholder="Teléfono">
+<input type="text" name="nombre" placeholder="Nombre" required>
 
-<textarea rows="5" placeholder="Cuéntame sobre tu proyecto"></textarea>
+<input type="email" name="correo" placeholder="Correo" required>
+
+<input type="tel" name="telefono" placeholder="Teléfono">
+
+<textarea name="mensaje" rows="5" placeholder="Cuéntame sobre tu proyecto"></textarea>
 
 <button type="submit">
 Enviar Mensaje
