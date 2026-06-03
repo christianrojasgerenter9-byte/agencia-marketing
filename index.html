@@ -346,6 +346,178 @@ WhatsApp
 <footer>
 © 2026 Christian Digital | Marketing Digital y Publicidad
 </footer>
+<!-- Chatbot -->
+<style>
+.chatbot-btn {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: #25d366;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 99999;
+  box-shadow: 0 12px 30px rgba(0,0,0,.28);
+}
 
-</body>
-</html>
+.chatbot-box {
+  position: fixed;
+  right: 22px;
+  bottom: 95px;
+  width: min(360px, calc(100vw - 32px));
+  background: #ffffff;
+  color: #111827;
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.32);
+  display: none;
+  overflow: hidden;
+  z-index: 99999;
+  font-family: Arial, sans-serif;
+}
+
+.chatbot-header {
+  background: #111827;
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.chatbot-messages {
+  padding: 14px;
+  max-height: 310px;
+  overflow-y: auto;
+  background: #f9fafb;
+}
+
+.bot-msg,
+.user-msg {
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.bot-msg {
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+.user-msg {
+  background: #25d366;
+  color: white;
+  margin-left: auto;
+  max-width: 85%;
+}
+
+.chatbot-options {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+}
+
+.chatbot-options button,
+.chatbot-whatsapp {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+}
+
+.chatbot-options button {
+  background: #eef2ff;
+  color: #111827;
+}
+
+.chatbot-options button:hover {
+  background: #dbeafe;
+}
+
+.chatbot-whatsapp {
+  background: #25d366;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+</style>
+
+<div class="chatbot-box" id="chatbotBox">
+  <div class="chatbot-header">Asistente Christian Digital</div>
+
+  <div class="chatbot-messages" id="chatbotMessages">
+    <div class="bot-msg">
+      Hola, soy el asistente virtual. ¿En qué puedo ayudarte?
+    </div>
+  </div>
+
+  <div class="chatbot-options">
+    <button onclick="chatOption('servicios')">Servicios</button>
+    <button onclick="chatOption('precios')">Precios</button>
+    <button onclick="chatOption('tiempo')">Tiempo de entrega</button>
+    <button onclick="chatOption('faq')">Preguntas frecuentes</button>
+
+    <a
+      class="chatbot-whatsapp"
+      href="https://wa.me/525646463204?text=Hola%2C%20vengo%20de%20tu%20pagina%20web%20y%20quiero%20informacion%20sobre%20tus%20servicios."
+      target="_blank"
+    >
+      Hablar por WhatsApp
+    </a>
+  </div>
+</div>
+
+<button class="chatbot-btn" onclick="toggleChat()">💬</button>
+
+<script>
+function toggleChat() {
+  const box = document.getElementById("chatbotBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function addMessage(text, type) {
+  const messages = document.getElementById("chatbotMessages");
+  const div = document.createElement("div");
+
+  div.className = type === "user" ? "user-msg" : "bot-msg";
+  div.innerHTML = text;
+
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function chatOption(option) {
+  const respuestas = {
+    servicios: {
+      pregunta: "Servicios",
+      respuesta: "Ofrecemos marketing digital, publicidad en redes sociales, diseño web, estrategias para atraer clientes y asesoría para negocios."
+    },
+    precios: {
+      pregunta: "Precios",
+      respuesta: "Los precios dependen del proyecto. Podemos darte una cotización personalizada según lo que necesites."
+    },
+    tiempo: {
+      pregunta: "Tiempo de entrega",
+      respuesta: "El tiempo depende del servicio. Una página sencilla puede tomar pocos días; proyectos más completos requieren más planificación."
+    },
+    faq: {
+      pregunta: "Preguntas frecuentes",
+      respuesta: "Preguntas comunes:<br><br>1. ¿Trabajan con emprendedores? Sí.<br>2. ¿Hacen páginas web? Sí.<br>3. ¿Puedo pedir cotización? Sí, por WhatsApp.<br>4. ¿Ayudan con publicidad? Sí, en redes sociales."
+    }
+  };
+
+  addMessage(respuestas[option].pregunta, "user");
+
+  setTimeout(() => {
+    addMessage(respuestas[option].respuesta, "bot");
+  }, 350);
+}
+</script>
